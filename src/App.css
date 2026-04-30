@@ -1,0 +1,118 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@500;600;700&display=swap');
+
+.headingColor {
+    color: #f5f0e8;
+    font-family: 'DM Serif Display', Georgia, serif;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+}
+
+.bodyColor {
+    color: rgba(245, 240, 232, 0.75);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+}
+
+.accentText {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-style: italic;
+    color: #b04a2f;
+    text-transform: lowercase;
+}
+
+.bgColor {
+    background-color: #1a1614;
+}
+
+.btnColor {
+    background-color: #b04a2f;
+    color: #f5f0e8;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: 2px solid #b04a2f;
+    border-radius: 6px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.btnColor:hover {
+    background-color: #c25738;
+    border-color: #c25738;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(176, 74, 47, 0.35);
+}
+
+.btnSecondary {
+    background-color: transparent;
+    color: #f5f0e8;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: 1px solid rgba(245, 240, 232, 0.18);
+    border-radius: 6px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.btnSecondary:hover {
+    border-color: #f5f0e8;
+    background-color: #221c19;
+}
+
+input, textarea, select {
+    background-color: #221c19;
+    color: #f5f0e8;
+    border: 1px solid rgba(245, 240, 232, 0.18);
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    width: 100%;
+    transition: border-color 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #b04a2f;
+}
+
+input::placeholder, textarea::placeholder {
+    color: rgba(245, 240, 232, 0.45);
+}
+
+label {
+    color: rgba(245, 240, 232, 0.75);
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.eyebrow {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #b04a2f;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+.eyebrow::before {
+    content: '';
+    width: 36px;
+    height: 1px;
+    background: #b04a2f;
+}
