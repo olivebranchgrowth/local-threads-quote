@@ -128,7 +128,7 @@ function App() {
                 ...formData,
                 phone,
                 email,
-                toEmail: 'candice@localthreadsohio.com',
+                toEmail: 'ryan@localthreadsohio.com',
                 client: 'Local Threads',
               };
 
