@@ -1,7 +1,7 @@
 // Vercel Serverless Function: receives quote requests from the form
 // and emails them via Resend. Falls back to logging if RESEND_API_KEY is not set.
 
-const TO_EMAILS = ['candice@localthreadsohio.com', 'ryan@localthreadsohio.com'];
+const TO_EMAILS = ['ryan@localthreadsohio.com'];
 const BCC_EMAIL = 'olivebranchgrowth@gmail.com';
 const FROM_EMAIL = 'Local Threads Quote Form <quotes@localthreadsohio.com>';
 

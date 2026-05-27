@@ -46,7 +46,7 @@ const ServiceSlide = ({ logo, image, onBack, onSubmit }) => {
               className={`serviceOption ${selected === svc.value ? 'selected' : ''}`}
             >
               {svc.label}
-              <span style={{ display: 'block', fontSize: '0.8rem', fontWeight: 400, color: 'rgba(255,255,255,0.4)', fontFamily: "'Barlow', sans-serif", marginTop: '2px' }}>
+              <span style={{ display: 'block', fontSize: '0.8rem', fontWeight: 400, color: 'rgba(245,240,232,0.72)', fontFamily: "'Barlow', sans-serif", marginTop: '2px' }}>
                 {svc.sub}
               </span>
             </button>
