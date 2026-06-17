@@ -12,7 +12,8 @@ export const sendQuoteRequest = async (formData) => {
     project: formData.projectDetails,
     quantity: formData.quantity,
     decoration_method: formData.service,
-    artwork: 'Not provided in form',
+    artwork: formData.artwork || 'None provided',
+    attachments: formData.attachments || [],
     source:
       (typeof document !== 'undefined' && document.referrer) ||
       'Local Threads website',

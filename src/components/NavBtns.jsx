@@ -1,4 +1,4 @@
-const NavBtns = ({ onBack, onNext, showBack = true, currentStep = 0, totalSteps = 5 }) => {
+const NavBtns = ({ onBack, onNext, showBack = true, currentStep = 0, totalSteps = 6 }) => {
     return (
         <div className='fixed bottom-6 right-6 flex items-center gap-4 z-10'>
             <div className='flex gap-2 mr-2'>
