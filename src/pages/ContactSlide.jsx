@@ -79,7 +79,7 @@ const ContactSlide = ({ logo, image, onBack, onSubmit, isSubmitting }) => {
                     alt='Local Threads embroidery'
                     className='w-full h-full object-cover'
                 />
-                <NavBtns onBack={onBack} onNext={handleSubmit} currentStep={4} />
+                <NavBtns onBack={onBack} onNext={handleSubmit} currentStep={5} />
             </div>
         </div>
     );

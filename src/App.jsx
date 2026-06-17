@@ -5,6 +5,7 @@ import IntroSlide from './pages/IntroSlide';
 import ServiceSlide from './pages/ServiceSlide';
 import ProjectSlide from './pages/ProjectSlide';
 import QuantitySlide from './pages/QuantitySlide';
+import ArtworkSlide from './pages/ArtworkSlide';
 import ContactSlide from './pages/ContactSlide';
 import ConfirmSlide from './pages/ConfirmSlide';
 import SlideTransition from './components/SlideTransition';
@@ -22,6 +23,8 @@ function App() {
     service: '',
     projectDetails: '',
     quantity: '',
+    artworkAttachment: null,
+    artworkDescription: '',
     phone: '',
     email: '',
   });
@@ -108,6 +111,23 @@ function App() {
             onSubmit={(quantity) => {
               setFormData((prev) => ({ ...prev, quantity }));
               setTransitionDirection('left');
+              setCurrentSlide('artwork');
+            }}
+          />
+        </SlideTransition>
+      )}
+      {currentSlide === 'artwork' && (
+        <SlideTransition keyProp='artwork' direction={transitionDirection}>
+          <ArtworkSlide
+            logo={logo}
+            image={projectImage}
+            onBack={() => {
+              setTransitionDirection('right');
+              setCurrentSlide('quantityDetails');
+            }}
+            onSubmit={({ attachment, artworkDescription }) => {
+              setFormData((prev) => ({ ...prev, artworkAttachment: attachment, artworkDescription }));
+              setTransitionDirection('left');
               setCurrentSlide('contactDetails');
             }}
           />
@@ -120,14 +140,25 @@ function App() {
             image={contactImage}
             onBack={() => {
               setTransitionDirection('right');
-              setCurrentSlide('quantityDetails');
+              setCurrentSlide('artwork');
             }}
             isSubmitting={isSubmitting}
             onSubmit={({ phone, email }) => {
+              // Build the artwork note for the lead email. An uploaded file rides along as a
+              // real email attachment; the note tells Ryan/Candice it is attached.
+              const artworkParts = [];
+              if (formData.artworkAttachment) {
+                artworkParts.push(`File attached to this email: ${formData.artworkAttachment.name}`);
+              }
+              if (formData.artworkDescription) artworkParts.push(formData.artworkDescription);
+              const artwork = artworkParts.length ? artworkParts.join('<br>') : 'None provided';
+
               const updatedData = {
                 ...formData,
                 phone,
                 email,
+                artwork,
+                attachments: formData.artworkAttachment ? [formData.artworkAttachment] : [],
                 toEmail: 'ryan@localthreadsohio.com',
                 client: 'Local Threads',
               };
