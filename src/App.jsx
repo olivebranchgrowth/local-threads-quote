@@ -14,6 +14,7 @@ import projectImage from '/images/slide-project.jpg';
 import quantityImage from '/images/slide-quantity.jpg';
 import contactImage from '/images/slide-contact.jpg';
 import { sendQuoteRequest } from './utils/emailService';
+import { initAnalytics, trackFunnelStep } from './utils/analytics';
 
 function App() {
   const [currentSlide, setCurrentSlide] = useState('intro');
@@ -30,12 +31,19 @@ function App() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Init analytics once (GA4 + Clarity + error tracking).
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
+  // Log every slide the user reaches so quote-form drop-off is measurable.
   useEffect(() => {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'slideView',
       slideName: currentSlide,
     });
+    trackFunnelStep(currentSlide);
   }, [currentSlide]);
 
   return (
