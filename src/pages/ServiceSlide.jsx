@@ -23,15 +23,15 @@ const ServiceSlide = ({ logo, image, onBack, onSubmit }) => {
 
   return (
     <div className='flex flex-col-reverse md:grid md:grid-cols-2 bgColor h-screen overflow-y-auto relative'>
-      <div className='flex flex-col justify-center px-6 sm:px-12 py-6 relative'>
+      <div className='flex flex-col justify-center px-6 sm:px-12 py-6 md:pt-28 relative'>
         <div className='mb-8 fixed top-10 left-10 hidden md:block'>
-          <img src={logo} alt='Local Threads' className='h-16 w-auto object-contain' />
+          <img src={logo} alt='Local Threads' className='ltLogo object-contain' />
         </div>
 
         <span className='eyebrow mb-6'>Service Type</span>
 
         <h1 className='text-xl sm:text-4xl font-bold mb-4 leading-snug headingColor' style={{ textTransform: 'uppercase', letterSpacing: '-0.02em' }}>
-          What Are We <em className='accentText'>Working On?</em>
+          What Are We <span className='accentText'>Working On?</span>
         </h1>
         <p className='text-lg mb-8 bodyColor'>Pick the service that fits your project.</p>
 
@@ -46,7 +46,7 @@ const ServiceSlide = ({ logo, image, onBack, onSubmit }) => {
               className={`serviceOption ${selected === svc.value ? 'selected' : ''}`}
             >
               {svc.label}
-              <span style={{ display: 'block', fontSize: '0.8rem', fontWeight: 400, color: 'rgba(245,240,232,0.72)', fontFamily: "'Barlow', sans-serif", marginTop: '2px' }}>
+              <span style={{ display: 'block', fontSize: '0.8rem', fontWeight: 400, color: 'var(--lt-cream-300)', marginTop: '2px' }}>
                 {svc.sub}
               </span>
             </button>
