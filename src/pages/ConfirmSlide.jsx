@@ -1,13 +1,13 @@
 const ConfirmSlide = ({ logo, image }) => {
     return (
         <div className='flex flex-col-reverse md:grid md:grid-cols-2 bgColor h-screen overflow-y-auto relative'>
-            <div className='flex flex-col justify-center px-6 sm:px-12 py-6 relative'>
+            <div className='flex flex-col justify-center px-6 sm:px-12 py-6 md:pt-28 relative'>
                 <div className='mb-8 fixed top-10 left-10 hidden md:block'>
-                    <img src={logo} alt='Local Threads' className='h-16 w-auto object-contain' />
+                    <img src={logo} alt='Local Threads' className='ltLogo object-contain' />
                 </div>
 
                 <div className='mb-6' style={{ display: 'inline-flex', alignItems: 'center', gap: '12px' }}>
-                    <svg width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='#f7941d' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
+                    <svg width='32' height='32' viewBox='0 0 24 24' fill='none' stroke='var(--lt-rust)' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
                         <path d='M22 11.08V12a10 10 0 1 1-5.93-9.14' />
                         <polyline points='22 4 12 14.01 9 11.01' />
                     </svg>
@@ -15,7 +15,7 @@ const ConfirmSlide = ({ logo, image }) => {
                 </div>
 
                 <h1 className='text-xl sm:text-4xl font-bold mb-4 leading-snug headingColor' style={{ textTransform: 'uppercase', letterSpacing: '-0.02em' }}>
-                    You're <em className='accentText'>All Set.</em>
+                    You're <span className='accentText'>All Set.</span>
                 </h1>
 
                 <p className='text-lg mb-4 bodyColor'>
