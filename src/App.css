@@ -185,14 +185,14 @@ label {
     box-shadow: inset 0 0 0 1px var(--lt-rust);
 }
 
-/* The badge logo is navy, so it only ever sits on charcoal. Never on rust,
-   never on cream. */
+/* The wordmark is white and orange on transparent, so it still only ever sits
+   on charcoal. White on cream would vanish and orange on rust has no contrast. */
 .ltLogo {
     display: block;
     height: auto;
-    width: 72px;
+    width: 158px;
 }
 
 @media (max-width: 640px) {
-    .ltLogo { width: 56px; }
+    .ltLogo { width: 123px; }
 }
