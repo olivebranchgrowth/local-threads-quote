@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import logo from '/images/local-threads-logo.png';
+import logo from '/images/local-threads-wordmark.png';
 import IntroSlide from './pages/IntroSlide';
 import ServiceSlide from './pages/ServiceSlide';
 import ProjectSlide from './pages/ProjectSlide';
