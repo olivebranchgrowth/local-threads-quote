@@ -49,7 +49,7 @@ const ConfirmSlide = ({ logo, image }) => {
 
                 <div className='mt-10 pt-6' style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
                     <p className='text-sm bodyColor'>
-                        <strong style={{ color: '#ffffff' }}>Local Threads</strong> &middot; 955 Checkrein Ave, Columbus, OH 43229
+                        <strong style={{ color: '#ffffff' }}>Local Threads</strong> &middot; 1021 Checkrein Ave, Columbus, OH 43229
                     </p>
                     <p className='text-sm bodyColor'>ryan@localthreadsohio.com</p>
                 </div>
