@@ -176,12 +176,20 @@ function App() {
 
               sendQuoteRequest(updatedData)
                 .then(() => {
+                  // The parent theme fires the Google Ads "LT Quote Form Lead" conversion
+                  // from this message, so it carries a matrix-derived value (see
+                  // utils/leadValue.js). A tracking failure must never block the lead.
+                  let leadVal;
+                  try {
+                    leadVal = leadValue(updatedData.quantity, updatedData.service, updatedData.projectDetails);
+                  } catch (_) { /* leave the value off, the parent falls back to a flat number */ }
                   window.parent.postMessage({
                     event: 'obgform_submission',
                     name: updatedData.name,
                     service: updatedData.service,
                     quantity: updatedData.quantity,
                     projectDetails: updatedData.projectDetails,
+                    ...(leadVal ? { conversion_value: leadVal.value, totalQuote: leadVal.value, currency: 'USD' } : {}),
                   }, '*');
                   setTransitionDirection('left');
                   setCurrentSlide('confirm');
