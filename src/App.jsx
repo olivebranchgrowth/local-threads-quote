@@ -14,6 +14,7 @@ import projectImage from '/images/slide-project.jpg';
 import quantityImage from '/images/slide-quantity.jpg';
 import contactImage from '/images/slide-contact.jpg';
 import { sendQuoteRequest } from './utils/emailService';
+import { leadValue } from './utils/leadValue';
 import { initAnalytics, trackFunnelStep } from './utils/analytics';
 
 function App() {
@@ -182,7 +183,7 @@ function App() {
                   let leadVal;
                   try {
                     leadVal = leadValue(updatedData.quantity, updatedData.service, updatedData.projectDetails);
-                  } catch (_) { /* leave the value off, the parent falls back to a flat number */ }
+                  } catch (err) { console.error('leadValue failed, parent falls back to a flat number', err); }
                   window.parent.postMessage({
                     event: 'obgform_submission',
                     name: updatedData.name,
