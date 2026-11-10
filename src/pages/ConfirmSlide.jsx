@@ -1,7 +1,7 @@
 const ConfirmSlide = ({ logo, image }) => {
     return (
-        <div className='flex flex-col-reverse md:grid md:grid-cols-2 bgColor h-screen overflow-y-auto relative'>
-            <div className='flex flex-col justify-center px-6 sm:px-12 py-6 md:pt-28 relative'>
+        <div className='flex flex-col md:grid md:grid-cols-2 bgColor h-screen overflow-y-auto relative'>
+            <div className='flex flex-col justify-start px-6 sm:px-12 pt-6 pb-8 md:pt-24 relative' data-fit>
                 <div className='mb-8 fixed top-10 left-10 hidden md:block'>
                     <img src={logo} alt='Local Threads' className='ltLogo object-contain' />
                 </div>
@@ -54,7 +54,7 @@ const ConfirmSlide = ({ logo, image }) => {
                     <p className='text-sm bodyColor'>ryan@localthreadsohio.com</p>
                 </div>
             </div>
-            <div className='h-auto imageOverlay'>
+            <div className='hidden md:block h-auto imageOverlay'>
                 <img
                     src={image}
                     alt='Local Threads'
