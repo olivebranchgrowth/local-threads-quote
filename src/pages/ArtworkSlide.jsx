@@ -47,13 +47,11 @@ const ArtworkSlide = ({ logo, image, onBack, onSubmit }) => {
     };
 
     return (
-        <div className='flex flex-col-reverse md:grid md:grid-cols-2 bgColor h-screen overflow-y-auto relative'>
-            <div className='flex flex-col justify-center px-6 sm:px-12 py-6 md:pt-28 relative'>
+        <div className='flex flex-col md:grid md:grid-cols-2 bgColor h-screen overflow-y-auto relative'>
+            <div className='flex flex-col justify-start px-6 sm:px-12 pt-6 pb-8 md:pt-24 relative' data-fit>
                 <div className='mb-8 fixed top-10 left-10 hidden md:block'>
                     <img src={logo} alt='Local Threads' className='ltLogo object-contain' />
                 </div>
-
-                <span className='eyebrow mb-6'>Your Artwork</span>
 
                 <h1 className='text-xl sm:text-4xl font-bold mb-4 leading-snug headingColor' style={{ textTransform: 'uppercase', letterSpacing: '-0.02em' }}>
                     Got A Logo Or <span className='accentText'>Design?</span>
@@ -105,15 +103,16 @@ const ArtworkSlide = ({ logo, image, onBack, onSubmit }) => {
                     >
                         {attachment || description.trim() ? 'Continue' : 'Skip For Now'}
                     </button>
+                    <button type='button' onClick={onBack} className='md:hidden mt-4 text-sm bodyColor underline w-fit' style={{ minHeight: 44 }}>Back</button>
                 </div>
             </div>
-            <div className='h-auto imageOverlay'>
+            <div className='hidden md:block h-auto imageOverlay'>
                 <img
                     src={image}
                     alt='Local Threads custom artwork'
                     className='w-full h-full object-cover'
                 />
-                <NavBtns onBack={onBack} onNext={handleSubmit} currentStep={4} />
+                <NavBtns onBack={onBack} onNext={handleSubmit} currentStep={2} totalSteps={4} />
             </div>
         </div>
     );

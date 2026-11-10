@@ -196,3 +196,20 @@ label {
 @media (max-width: 640px) {
     .ltLogo { width: 123px; }
 }
+
+/* 2026-11-10 tap-first steps: range and item chips, two per row, 48px+ tap targets. */
+.qtyGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+.qtyOption {
+    text-align: center;
+    min-height: 52px;
+    padding: 12px 10px;
+    font-size: 1rem;
+}
+@media (hover: none) {
+    .serviceOption:hover { transform: none; border-color: var(--lt-charcoal-600); background-color: var(--lt-charcoal-700); }
+    .serviceOption.selected:hover { border-color: var(--lt-rust); background-color: var(--lt-charcoal-600); }
+}
