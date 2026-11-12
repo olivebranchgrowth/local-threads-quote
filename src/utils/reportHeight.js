@@ -67,16 +67,22 @@ function measure() {
         const text = kids.find((c) => !c.classList.contains('imageOverlay')) || kids[0];
         if (!text) return;
         const photos = kids.filter((c) => c !== text);
+        // A step whose photo hasn't loaded yet would under-report; wait for it (a broken
+        // image counts as loaded, and the timed re-sends go out regardless).
+        const ready = [...slide.querySelectorAll('img')].every((img) => img.complete);
         let height;
         let top = 0;
         if (window.innerWidth < MD) {
-            // Stacked: text column plus each photo box at its full size (the intro photo
-            // is capped at 100vh, i.e. the frame, so its box alone would echo the frame).
+            // Stacked, photo on top: text column plus each photo box at its full size (the
+            // intro photo is capped at 100vh, i.e. the frame, so its box alone would echo the
+            // frame). The question block starts below the photos.
             height = text.getBoundingClientRect().height;
-            for (const c of photos) height += Math.max(c.getBoundingClientRect().height, photoHeight(c));
-            let lo = Infinity;
-            for (const c of kids) lo = Math.min(lo, c.getBoundingClientRect().top);
-            top = Math.max(0, Math.round(text.getBoundingClientRect().top - lo));
+            for (const c of photos) {
+                const ph = Math.max(c.getBoundingClientRect().height, photoHeight(c));
+                height += ph;
+                top += ph;
+            }
+            top = Math.round(top);
         } else {
             // Side by side: the row is the taller of the text column's own content and
             // each photo at its natural aspect for the column width.
@@ -84,7 +90,7 @@ function measure() {
             for (const c of photos) height = Math.max(height, photoHeight(c));
         }
         const step = slug((slide.querySelector('.eyebrow') || slide.querySelector('h1') || {}).textContent);
-        if (height && (!best || height > best.height)) best = { height: Math.ceil(height), step, top };
+        if (height && (!best || height > best.height)) best = { height: Math.ceil(height), step, top, ready };
     });
     return best;
 }
@@ -98,7 +104,7 @@ export function reportHeight() {
     const send = (force) => {
         frame = 0;
         const m = measure();
-        if (!m) return;
+        if (!m || (!m.ready && force !== true)) return;
         const key = `${m.height}|${m.step}|${m.top}`;
         if (key === last && force !== true) return;
         last = key;
