@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import logo from '/images/local-threads-wordmark.png';
 import IntroSlide from './pages/IntroSlide';
@@ -31,6 +31,10 @@ function App() {
     email: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // One send per lead. The arrow, Enter in either field and the button can all fire the contact
+  // step's submit before isSubmitting re-renders, which sent every such lead twice (2026-11-12).
+  // A ref locks synchronously; it is released only when a send fails, so a retry still works.
+  const sendingRef = useRef(false);
 
   // Init analytics once (GA4 + Clarity + error tracking).
   useEffect(() => {
@@ -153,6 +157,8 @@ function App() {
             }}
             isSubmitting={isSubmitting}
             onSubmit={({ phone, email }) => {
+              if (sendingRef.current) return;
+              sendingRef.current = true;
               // Build the artwork note for the lead email. An uploaded file rides along as a
               // real email attachment; the note tells Ryan/Candice it is attached.
               const artworkParts = [];
@@ -196,6 +202,7 @@ function App() {
                   setCurrentSlide('confirm');
                 })
                 .catch((error) => {
+                  sendingRef.current = false;
                   console.error('Error sending quote request:', error);
                 })
                 .finally(() => {
