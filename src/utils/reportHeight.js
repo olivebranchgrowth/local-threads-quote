@@ -7,8 +7,8 @@
 // - height: what the current step needs, so the frame never scrolls inside.
 // - step:   the step's eyebrow as a slug ('free-quote', 'service-type' ...), no
 //           personal data. It changes when the visitor moves to another step.
-// - top:    where the step's question block starts inside the frame. On phones the
-//           photo sits above it; on the two-column layout it is 0.
+// - top:    where the step's question (its first line) starts inside the frame. On
+//           phones the photo sits above it; on the two-column layout the logo zone.
 // The two LT ad landing pages already listen for this event (their OBG-LP-PUNCHUP
 // script reads `height` below 861px wide and ignores the rest), and the theme's
 // OBG LT quote-fit block sizes every quote frame on every page from it.
@@ -70,8 +70,12 @@ function measure() {
         // A step whose photo hasn't loaded yet would under-report; wait for it (a broken
         // image counts as loaded, and the timed re-sends go out regardless).
         const ready = [...slide.querySelectorAll('img')].every((img) => img.complete);
+        // The question block starts at the text column's first child with height (its padding sits
+        // above it: 24px on phones, the 112px logo zone on the two-column layout).
+        const first = [...text.children].find((c) => inFlow(c) && c.getBoundingClientRect().height);
+        const pad = first ? Math.max(0, first.getBoundingClientRect().top - text.getBoundingClientRect().top) : 0;
         let height;
-        let top = 0;
+        let top = pad;
         if (window.innerWidth < MD) {
             // Stacked, photo on top: text column plus each photo box at its full size (the
             // intro photo is capped at 100vh, i.e. the frame, so its box alone would echo the
@@ -90,7 +94,7 @@ function measure() {
             for (const c of photos) height = Math.max(height, photoHeight(c));
         }
         const step = slug((slide.querySelector('.eyebrow') || slide.querySelector('h1') || {}).textContent);
-        if (height && (!best || height > best.height)) best = { height: Math.ceil(height), step, top, ready };
+        if (height && (!best || height > best.height)) best = { height: Math.ceil(height), step, top: Math.round(top), ready };
     });
     return best;
 }
